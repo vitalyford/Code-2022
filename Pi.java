@@ -4,6 +4,6 @@ public class Pi {
     }    
     public static void main(String[] args) {
         Pi p = new Pi();
-        System.out.println(3 + 4 * p.sum(10000));
+        System.out.println(3 + 4 * p.sum(1000));
     }
 }
