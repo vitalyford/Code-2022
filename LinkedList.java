@@ -25,8 +25,8 @@ public class LinkedList {
 
     public String toString() {
         String out = "";
-        for (Node n = head; n != null; n = n.next, out += (n == null) ? "" : n.obj + " ")
-            ;
+        for (Node n = head; n != null; n = n.next)
+            out += n.obj + " ";
 
         return out;
     }
@@ -38,22 +38,41 @@ public class LinkedList {
      */
     public void add(Object obj) {
         Node node = new Node(obj);
-
+        
         if (head == null && tail == null) {
             head = tail = node;
         } else {
             tail.next = node;
             tail = node;
         }
-    }
+        //TO-DO: try adding size as a private variable in LinkedList add method
 
+    }
+    // icklesnoop the bickleoops
+    /**
+     * The method returns the found object based on the passed index.
+     * It throws an Exception saying that you messed up, and you gotta fix it.
+     * Starts at 0 but supports negatives
+     * @param index
+     * @return
+     */
+    public Object get(int index) {
+        Node temp = head;
+        for (int o = 0; o < index; o++) {
+            temp = temp.next;
+        }
+        return temp.obj;
+    }
+    
     public static void main(String[] args) {
         LinkedList vitaly = new LinkedList();
         vitaly.add(13);
         vitaly.add(73);
         vitaly.add(95);
         vitaly.add(2);
+        System.out.println(vitaly.get(4));
+
         System.out.println(vitaly);
 
-    }
+     }
 }
