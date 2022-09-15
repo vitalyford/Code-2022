@@ -18,6 +18,7 @@ class Node {
 public class LinkedList {
     private Node head;
     private Node tail;
+    private int size;
 
     public LinkedList() {
         head = tail = null;
@@ -29,6 +30,15 @@ public class LinkedList {
             out += n.obj + " ";
 
         return out;
+    }
+
+    /**
+     * This method returns the number of elements in this list.
+     * 
+     * @return the number of elements in this list
+     */
+    public int size() {
+        return size;
     }
 
     /**
@@ -45,6 +55,7 @@ public class LinkedList {
             tail.next = node;
             tail = node;
         }
+        size++;
     }
 
     /**
