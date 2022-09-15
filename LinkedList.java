@@ -66,7 +66,8 @@ public class LinkedList {
     /**
      * The method returns the found object based on the passed index.
      * It throws an Exception saying that you messed up, and you gotta fix it.
-     * Starts at 0 but supports negatives.
+     * Starts at 0 but supports negatives and wraps the index around within
+     * the limits of the list.
      * 
      * @param index the index of the object to be returned.
      * @return the object at the index.
