@@ -24,6 +24,11 @@ public class LinkedList {
         head = tail = null;
     }
 
+    /**
+     * This method returns the print representation of the list.
+     * 
+     * @return the print representation of the list.
+     */
     public String toString() {
         String out = "";
         for (Node n = head; n != null; n = n.next)
@@ -35,7 +40,7 @@ public class LinkedList {
     /**
      * This method returns the number of elements in this list.
      * 
-     * @return the number of elements in this list
+     * @return the number of elements in this list.
      */
     public int size() {
         return size;
