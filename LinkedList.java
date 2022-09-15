@@ -73,7 +73,7 @@ public class LinkedList {
      */
     public Object get(int index) {
         Node temp = head;
-        for (int o = 0; o < index; o++) {
+        for (int i = 0; i < index; i++) {
             temp = temp.next;
         }
         return temp.obj;
