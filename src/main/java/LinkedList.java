@@ -1,3 +1,5 @@
+package src.main.java;
+
 class Node {
     Object obj;
     Node next;
