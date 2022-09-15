@@ -45,10 +45,8 @@ public class LinkedList {
             tail.next = node;
             tail = node;
         }
-        //TO-DO: try adding size as a private variable in LinkedList add method
-
     }
-    // icklesnoop the bickleoops
+
     /**
      * The method returns the found object based on the passed index.
      * It throws an Exception saying that you messed up, and you gotta fix it.
