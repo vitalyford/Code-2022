@@ -1,5 +1,9 @@
 package src.main.java;
 
+// TODO: add generics <E>
+// TODO: talk about iterators
+// TODO: talk about Exceptions
+
 class Node {
     Object obj;
     Node next;
