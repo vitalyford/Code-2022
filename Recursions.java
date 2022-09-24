@@ -2,6 +2,10 @@ import java.util.*;
 
 public class Recursions {
 
+    public static int rabbits(int m) {
+        return (m <= 2) ? 1 : rabbits(m - 1) + rabbits(m - 2);
+    }
+
     public static String reverseString(String input) {
         // char temp = input.charAt(input.length()-1);
         // input = input.substring(0, input.length()-1);
@@ -71,10 +75,12 @@ public class Recursions {
         Integer[] data = { 1, 3, 5, 6, 6, 7, 34, 4, 42, 23, 3, 423, 24, 23, 4, 234, 234, 234, 234, 63 };
         ArrayList<Integer> list = new ArrayList<>(Arrays.asList(data));
         Collections.sort(list);
-        System.out.println(binarySearch(list, 23, 0, list.size() - 1));
+        // System.out.println(binarySearch(list, 23, 0, list.size() - 1));
 
         // System.out.println(factorial(10));
 
-        System.out.println(reverseString("A Santa lived as a devil at NASA"));
+        // System.out.println(reverseString("A Santa lived as a devil at NASA"));
+
+        System.out.println(rabbits(100));
     }
 }
