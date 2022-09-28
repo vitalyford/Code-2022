@@ -2,6 +2,17 @@ import java.util.*;
 
 public class Recursions {
 
+    public static void hanoi(int n, String src, String dst, String spare, java.util.LinkedList<String> out) {
+        if (n == 1) {
+            out.add("Move from " + src + " to " + dst);
+        }
+        else {
+            hanoi(n - 1, src, spare, dst, out);
+            hanoi(1, src, dst, spare, out);
+            hanoi(n - 1, spare, dst, src, out);
+        }
+    }
+
     public static int rabbits(int m) {
         return (m <= 2) ? 1 : rabbits(m - 1) + rabbits(m - 2);
     }
@@ -10,11 +21,13 @@ public class Recursions {
         // char temp = input.charAt(input.length()-1);
         // input = input.substring(0, input.length()-1);
         // if (input.length() > 0) {
-        //     return temp + reverseString(input);
+        // return temp + reverseString(input);
         // } else {
-        //     return temp + "";
+        // return temp + "";
         // }
-        return (input.length() > 0) ? input.charAt(input.length()-1) + reverseString(input.substring(0, input.length()-1)) : "";
+        return (input.length() > 0)
+                ? input.charAt(input.length() - 1) + reverseString(input.substring(0, input.length() - 1))
+                : "";
     }
 
     public static int factorial(int n) {
@@ -29,9 +42,9 @@ public class Recursions {
 
         // base case
         // if (n > 0) {
-        //     return n * factorial(n - 1);
+        // return n * factorial(n - 1);
         // } else {
-        //     return 1;
+        // return 1;
         // }
 
         return ((n > 0) ? n * factorial(n - 1) : 1);
@@ -81,6 +94,10 @@ public class Recursions {
 
         // System.out.println(reverseString("A Santa lived as a devil at NASA"));
 
-        System.out.println(rabbits(100));
+        // System.out.println(rabbits(100));
+        java.util.LinkedList<String> out = new java.util.LinkedList<>();
+        hanoi(64, "A", "B", "C", out);
+        System.out.println(out.size());
     }
 }
+
