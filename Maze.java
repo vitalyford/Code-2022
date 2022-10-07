@@ -44,6 +44,7 @@ public class Maze {
                                     { 1, 0, 1, 0, 0 } };
 
     public static boolean helper(int[][] maze, int x, int y, ArrayList<String> pos) {
+        // hella of a lines
         return (y == maze.length - 1 && x == maze[0].length - 1) ? true :
                 (x + 1 != maze[0].length && maze[y][x + 1] == 0 && helper(maze, x + 1, y, pos) && pos.add((x + 1) + " " + y)) ? true :
                 ((y + 1 != maze.length && maze[y + 1][x] == 0) && helper(maze, x, y + 1, pos) && pos.add(x + " " + (y + 1))) ? true : false;
@@ -69,6 +70,32 @@ public class Maze {
         // return found;
     }
 
+
+    public static boolean solutionStack(int[][] maze) {
+        Stack<Integer[]> stack = new Stack<Integer[]>();
+        ArrayList<String> visit = new ArrayList<>();
+        stack.push(new Integer[]{0,0});
+        while(!stack.empty()){
+            Integer[] curr = stack.peek();
+            visit.add(curr.toString());
+            if((curr[0] + 1 < maze[0].length && maze[curr[1]][curr[0] + 1] == 0) && (!visit.contains((new Integer[]{curr[0] + 1, curr[1]}).toString())) ){
+                stack.push(new Integer[]{curr[0] + 1, curr[1]}); 
+            }
+            else if((curr[1] + 1 < maze.length && maze[curr[1] + 1][curr[0]] == 0) && (!visit.contains((new Integer[]{curr[0], curr[1] + 1}).toString())) ){
+                stack.push(new Integer[]{curr[0], curr[1] + 1});
+            }
+            else{
+                stack.pop();
+            }
+
+            if((stack.peek()[0] == maze[0].length - 1) && (stack.peek()[1] == maze.length - 1)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     public static boolean solution(int[][] maze) {
         ArrayList<String> pos = new ArrayList<>();
         boolean found = helper(maze, 0, 0, pos);
@@ -78,9 +105,9 @@ public class Maze {
     }
 
     public static void main(String[] args) {
-        System.out.println(solution(maze1));
-        System.out.println(solution(maze2));
-        System.out.println(solution(maze3));
-        System.out.println(solution(maze4));
+        System.out.println(solutionStack(maze1));
+        System.out.println(solutionStack(maze2));
+        System.out.println(solutionStack(maze3));
+        System.out.println(solutionStack(maze4));
     }
 }
