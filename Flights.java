@@ -7,15 +7,19 @@ public class Flights {
         Stack<String> stack = new Stack<>();
         ArrayList<String> visited = new ArrayList<>();
         stack.push(src);
+        visited.add(src);
         boolean found = false;
         while (!stack.empty() && !found) {
             src = stack.peek();
             // going over all possible paths
+            boolean attempted = false;
             for (String node : nodes) {
                 if (node.substring(0, 1).equals(src)) {
+                    attempted = true;
                     String[] paths = node.split(" ");
                     // picking where we can go from src
-                    for (int i = 1; i < paths.length; i++) {
+                    int i = 1;
+                    for (; i < paths.length; i++) {
                         // check if we found the path
                         if (paths[i].equals(dst)) {
                             // we found it!
@@ -30,11 +34,21 @@ public class Flights {
                             break;
                         }
                     }
+                    // we are stuck
+                    if (i == paths.length) {
+                        stack.pop();
+                    }
                     break;
                 }
             }
+            if (!attempted) {
+                stack.pop();
+            }
         }
-        return false;
+        if (found) {
+            System.out.println(stack);
+        }
+        return found;
     }
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -49,6 +63,6 @@ public class Flights {
 
         // System.out.println(nodes);
 
-        findPath(nodes, "S", "X");
+        System.out.println(findPath(nodes, "S", "P"));
     }
 }
