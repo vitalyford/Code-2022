@@ -70,25 +70,24 @@ public class Maze {
         // return found;
     }
 
-
     public static boolean solutionStack(int[][] maze) {
         Stack<Integer[]> stack = new Stack<Integer[]>();
         ArrayList<String> visit = new ArrayList<>();
         stack.push(new Integer[]{0,0});
         while(!stack.empty()){
             Integer[] curr = stack.peek();
-            visit.add(curr.toString());
-            if((curr[0] + 1 < maze[0].length && maze[curr[1]][curr[0] + 1] == 0) && (!visit.contains((new Integer[]{curr[0] + 1, curr[1]}).toString())) ){
+            visit.add(Arrays.toString(curr));
+            if((curr[0] + 1 < maze[0].length && maze[curr[1]][curr[0] + 1] == 0) && (!visit.contains(Arrays.toString(new Integer[]{curr[0] + 1, curr[1]}))) ){
                 stack.push(new Integer[]{curr[0] + 1, curr[1]}); 
             }
-            else if((curr[1] + 1 < maze.length && maze[curr[1] + 1][curr[0]] == 0) && (!visit.contains((new Integer[]{curr[0], curr[1] + 1}).toString())) ){
+            else if((curr[1] + 1 < maze.length && maze[curr[1] + 1][curr[0]] == 0) && (!visit.contains(Arrays.toString(new Integer[]{curr[0], curr[1] + 1}))) ){
                 stack.push(new Integer[]{curr[0], curr[1] + 1});
             }
             else{
                 stack.pop();
             }
 
-            if((stack.peek()[0] == maze[0].length - 1) && (stack.peek()[1] == maze.length - 1)){
+            if(!stack.empty() && (stack.peek()[0] == maze[0].length - 1) && (stack.peek()[1] == maze.length - 1)){
                 return true;
             }
         }
