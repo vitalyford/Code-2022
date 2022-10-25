@@ -40,7 +40,19 @@ public class HashMapPlay {
         }
 
         System.out.println(hm.get("quis"));
-
         
+        ArrayList<String> counts = new ArrayList<>();
+
+        for (String word : line) {
+            int count = 0;
+            for (int i = 0; i < line.length; i++) {
+                if (word.equals(line[i])) {
+                    count++;
+                }
+            }
+            counts.add(word + "=" + count);
+        }
+
+        System.out.println(counts);
     }
 }
