@@ -53,6 +53,6 @@ public class HashMapPlay {
             counts.add(word + "=" + count);
         }
 
-        System.out.println(counts);
+        System.out.println(counts.get(0));
     }
 }

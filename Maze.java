@@ -72,7 +72,7 @@ public class Maze {
 
     public static boolean solutionStack(int[][] maze) {
         Stack<Integer[]> stack = new Stack<Integer[]>();
-        ArrayList<String> visit = new ArrayList<>();
+        Set<String> visit = new HashSet<>();
         stack.push(new Integer[]{0,0});
         while(!stack.empty()){
             Integer[] curr = stack.peek();
