@@ -1,3 +1,32 @@
+import java.util.Comparator;
+
+class ComparePersonByFirstName implements Comparator<Person> {
+
+    @Override
+    public int compare(Person p1, Person p2) {
+        return p1.firstName.compareTo(p2.firstName);
+    }
+
+}
+
+class ComparePersonByLastName implements Comparator<Person> {
+    
+    @Override
+    public int compare(Person p1, Person p2) {
+        return p1.lastName.compareTo(p2.lastName);
+    }
+
+}
+
+class ComparePersonByDoB implements Comparator<Person> {
+    
+    @Override
+    public int compare(Person p1, Person p2) {
+        return p1.dob.compareTo(p2.dob);
+    }
+
+}
+
 public class Person {
     String firstName;
     String lastName;

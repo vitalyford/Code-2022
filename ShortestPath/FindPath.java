@@ -35,14 +35,15 @@ class Path implements Comparable<Path> {
         cx = p.cx;
         cy = p.cy;
 
-        this.maze = p.maze;
-        total += maze[cy][cx] - '0';
+        this.maze  = p.maze;
+        this.total = p.total;
     }
 
     public void add(int x, int y) {
         cx = x;
         cy = y;
         coors.add(new Coordinate(x, y));
+        total += maze[cy][cx] - '0';
     }
 
     @Override
@@ -58,22 +59,15 @@ class Path implements Comparable<Path> {
 
         Path p = (Path)o;
 
-        for (int i = 0; i < p.coors.size(); i++) {
-            if (p.coors.get(i).x != coors.get(i).x || p.coors.get(i).y != coors.get(i).y) {
-                return false;
-            }
-        }
-
-        return true;
+        return p.cx == cx || p.cy == cy;
     }
 
     @Override
     public int hashCode() {
         int hash = 17;
-        for (Coordinate c : coors) {
-            hash = hash * 19 + c.x;
-            hash = hash * 19 + c.y;
-        }
+        
+        hash = hash * 19 + cx;
+        hash = hash * 19 + cy;
 
         return hash;
     }
@@ -101,8 +95,10 @@ public class FindPath {
         // X is a column
         // Y is a row
         // maze[row][column]
+        int count = 0;
         while (!paths.isEmpty()) {
             Path p = paths.poll();
+            count++;
 
             if (visited.contains(p)) {
                 continue;
@@ -110,6 +106,7 @@ public class FindPath {
             visited.add(p);
 
             if (p.cx == maze[0].length - 1 && p.cy == maze.length - 1) {
+                System.out.println("Total paths left to explore is " + paths.size());
                 paths.clear();
                 paths.add(p);
                 break;
@@ -143,6 +140,8 @@ public class FindPath {
                 paths.add(newP);
             }
         } // end of while
+
+        System.out.println("We polled " + count + " number of paths");
 
         // Print the final maze
         for (Coordinate c : paths.poll().coors) {
