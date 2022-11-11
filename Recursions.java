@@ -13,9 +13,35 @@ public class Recursions {
         }
     }
 
-    public static int rabbits(int m) {
-        return (m <= 2) ? 1 : rabbits(m - 1) + rabbits(m - 2);
+
+
+
+
+    // memoization
+    public static long rabbits(long m, HashMap<Long, Long> memo) {
+        if (memo.containsKey(m)) {
+            return memo.get(m);
+        }
+
+        long result = 0;
+        if (m <= 2) {
+            result = 1;
+        }
+        else {
+            result = rabbits(m - 1, memo) + rabbits(m - 2, memo);
+        }
+
+        memo.put(m, result);
+
+        return result;
     }
+
+
+
+
+
+
+
 
     public static String reverseString(String input) {
         // char temp = input.charAt(input.length()-1);
@@ -85,19 +111,19 @@ public class Recursions {
     }
 
     public static void main(String[] args) {
-        Integer[] data = { 1, 3, 5, 6, 6, 7, 34, 4, 42, 23, 3, 423, 24, 23, 4, 234, 234, 234, 234, 63 };
-        ArrayList<Integer> list = new ArrayList<>(Arrays.asList(data));
-        Collections.sort(list);
+        // Integer[] data = { 1, 3, 5, 6, 6, 7, 34, 4, 42, 23, 3, 423, 24, 23, 4, 234, 234, 234, 234, 63 };
+        // ArrayList<Integer> list = new ArrayList<>(Arrays.asList(data));
+        // Collections.sort(list);
         // System.out.println(binarySearch(list, 23, 0, list.size() - 1));
 
         // System.out.println(factorial(10));
 
         // System.out.println(reverseString("A Santa lived as a devil at NASA"));
 
-        // System.out.println(rabbits(100));
-        java.util.LinkedList<String> out = new java.util.LinkedList<>();
-        hanoi(64, "A", "B", "C", out);
-        System.out.println(out.size());
+        System.out.println(rabbits(10000, new HashMap<>()));
+        // java.util.LinkedList<String> out = new java.util.LinkedList<>();
+        // hanoi(64, "A", "B", "C", out);
+        // System.out.println(out.size());
     }
 }
 
