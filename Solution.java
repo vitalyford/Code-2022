@@ -67,17 +67,13 @@ public class Solution {
         }
 
         int totalWays = 0;
-        boolean flag = false;
 
         // Cutting horizontally
         // sR = 0, eR = 2
         // row = 1..2
         for (int row = sR + 1; row <= eR; row++) {
             if (checkApplesRowCut(pizza, sR, sC, eR, eC, row)) {
-                flag = true;
-                if (flag) {
-                    sR = 1;
-                }
+                sR = 1;
                 totalWays += helper(pizza, k - 1, row, sC, eR, eC);
             }
         }
