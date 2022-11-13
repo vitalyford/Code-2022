@@ -1,5 +1,7 @@
 public class Solution {
+
     private static boolean checkApplesColCut(String[] pizza, int sR, int sC, int eR, int eC, int col) {
+
         // Checking the top part
         boolean leftCheck = false;
         for (String p : pizza) {
@@ -30,14 +32,18 @@ public class Solution {
 
         return leftCheck && rightCheck;
     }
+    
+    private static int count = 0;
 
     private static boolean checkApplesRowCut(String[] pizza, int sR, int sC, int eR, int eC, int row) {
+
         // Checking the top part
         boolean topCheck = false;
         for (int r = sR; r < row; r++) {
-            for (int i = r; i <= eR; i++) {
+            for (int i = sC; i <= eC; i++) {
                 if (pizza[r].charAt(i) == 'A') {
                     topCheck = true;
+                    count = r;
                     break;
                 }
             }
@@ -58,19 +64,28 @@ public class Solution {
     }
 
     private static int helper(String[] pizza, int k, int sR, int sC, int eR, int eC) {
+
         if (k == 1) {
             return 1; // it's one way to cut a pizza into k pieces
         }
-        int totalWays = 0;
+
+        int totalWays = 0,
+            num1 = -1;
+
         // Cutting horizontally
         // sR = 0, eR = 2
         // row = 1..2
         for (int row = sR + 1; row <= eR; row++) {
+            if ((totalWays - num1) > 1) {
+                sR = count + 1;
+                num1 += 1;
+            }
             if (checkApplesRowCut(pizza, sR, sC, eR, eC, row)) {
                 totalWays += helper(pizza, k - 1, row, sC, eR, eC);
+                sR += 1;
             }
         }
-        
+
         // Cutting vertically
         for (int col = sC + 1; col <= eC; col++) {
             if (checkApplesColCut(pizza, sR, sC, eR, eC, col)) {
@@ -82,6 +97,7 @@ public class Solution {
     }
 
     public static int ways(String[] pizza, int k) {
+
         // ["A..","AAA","..."]
         /* charAt()
         A . .
